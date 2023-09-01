@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PH Tube</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        "primary-color": "#FF1F3D",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <header class="my-6 mx-10">
+        <div>
+            <div class="navbar bg-base-100">
+                <div class="navbar-start">
+                    <img src="Logo.png" alt="">
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <button class="btn bg-slate-200">Sort by view</button>
+                </div>
+                <div class="navbar-end">
+                    <a class="btn bg-primary-color text-white">Blog</a>
+                </div>
+            </div>
+        </div>
+        <hr class="m-5">
+    </header>
+
+    <main>
+        <section id="tab-container" class="flex justify-center mb-16">
+            
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-12">
+
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
