@@ -9,7 +9,7 @@ const loadCategory = async () => {
     categories.forEach((category) => {
         const div = document.createElement("div");
         div.innerHTML = `
-        <button onclick="categorySection('${category.category_id}')" class="btn bg-gray-200 hover:bg-primary-color hover:text-white mr-3">${category.category}</button>
+        <button onclick="categorySection('${category.category_id}')" class="btn bg-gray-200 hover:bg-gray-300 focus:bg-primary-color focus:text-white mr-3">${category.category}</button>
         `;
         tabContainer.appendChild(div);
     })
@@ -21,8 +21,14 @@ const categorySection = async (categoryId) => {
     const data = await response.json();
 
     const cardContainer = document.getElementById("card-container");
+    cardContainer.textContent = "";
+
+    if(!data.status){
+        
+    }
+
     data.data?.forEach((cards) => {
-        console.log(cards);
+        // console.log(cards);
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card card-compact bg-base-100 shadow-xl">
@@ -36,7 +42,7 @@ const categorySection = async (categoryId) => {
                         <h2 class="card-title text-base font-bold">${cards?.title}</h2>
                         <div class="flex">
                             <p class="flex-none mr-2">${cards?.authors[0].profile_name}</p>
-                            <img src="images/fi_10629607.png" alt="">
+                            <img src=${cards?.authors[0]?.verified ? "images/fi_10629607.png" : ""}>
                         </div>
                         <p>${cards?.others.views}</p>
                     </div>
@@ -49,5 +55,5 @@ const categorySection = async (categoryId) => {
     })
 }
 
-
 loadCategory();
+// categorySection(1000);
