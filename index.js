@@ -16,8 +16,37 @@ const loadCategory = async () => {
 };
 
 
-const categorySection = (categoryId) => {
-    console.log(categoryId);
+const categorySection = async (categoryId) => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);
+    const data = await response.json();
+
+    const cardContainer = document.getElementById("card-container");
+    data.data?.forEach((cards) => {
+        console.log(cards);
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <div class="card card-compact bg-base-100 shadow-xl">
+            <figure><img src=${cards?.thumbnail} alt="" class="h-48 w-full" /></figure>
+            <div class="card-body">
+                <div class="flex">
+                    <div class="mr-5">
+                        <img src=${cards?.authors[0].profile_picture} alt="" class="w-10 h-10 rounded-full">
+                    </div>
+                    <div>
+                        <h2 class="card-title text-base font-bold">${cards?.title}</h2>
+                        <div class="flex">
+                            <p class="flex-none mr-2">${cards?.authors[0].profile_name}</p>
+                            <img src="images/fi_10629607.png" alt="">
+                        </div>
+                        <p>${cards?.others.views}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+
+        cardContainer.appendChild(div);
+    })
 }
 
 
