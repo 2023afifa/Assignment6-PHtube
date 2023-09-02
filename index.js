@@ -23,12 +23,19 @@ const categorySection = async (categoryId) => {
     const cardContainer = document.getElementById("card-container");
     cardContainer.textContent = "";
 
-    if(!data.status){
-        
+    if (!data.status) {
+        const falseDiv = document.createElement("div");
+        falseDiv.innerHTML = `
+        <div class="">
+                    <img src="images/Icon.png" alt="" class="w-36 h-36 mx-auto">
+                    <h2 class="text-3xl font-bold text-center">Oops!! Sorry, There is no content here</h2>
+        </div>
+        `;
+        cardContainer.appendChild(falseDiv);
     }
 
     data.data?.forEach((cards) => {
-        // console.log(cards);
+        console.log(cards);
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card card-compact bg-base-100 shadow-xl">
@@ -55,5 +62,30 @@ const categorySection = async (categoryId) => {
     })
 }
 
+const sortButton = async () => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/1000`);
+    const data = await response.json();
+
+    // console.log(data.data);
+
+    data.data.forEach((viewTotal) => {
+        const viewStr = viewTotal.others.views;
+        const viewInt = parseFloat(viewStr);
+        console.log(viewInt);
+    })   
+}
+
+function sortArr(viewInt){
+    const viewArr = [];
+    viewArr.push(viewInt);
+    console.log(viewArr);
+}
+
 loadCategory();
 // categorySection(1000);
+
+
+
+function blogBtn(){
+    window.location.href = "blog.html";
+}
